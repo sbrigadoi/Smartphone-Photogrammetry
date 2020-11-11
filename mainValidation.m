@@ -5,15 +5,15 @@
 % Mobile 3: OnePlus
 % Mobile 4: iPhone
 
-addpath('Validation_study/Functions')
+addpath(fullfile('Validation_study','Functions'))
 
 mobileName = {'Asus','Samsung','OnePlus','iPhone'};
 distThresh = [0.15 0.3 0.2 0.3];
 filenamePol = {'Operator1','Operator2','Operator3','Operator4'};
 
 % Load ground truth (phantom positions and their labels)
-load('Validation_study/Other/phantom_positions.mat')
-[~,txt,~] = xlsread('Validation_study/Other/name_positions.xlsx');
+load(fullfile('Validation_study','Other','phantom_positions.mat'))
+[~,txt,~] = xlsread(fullfile('Validation_study','Other','name_positions.xlsx'));
 landmarks = {'L3','L4','Inion','Nasion','Cz'};
 label_ref = {txt{2:289,1}};
 idx_landmarks = zeros(length(landmarks),1);
@@ -26,7 +26,7 @@ p2 = surface_points(idx_landmarks,:);
 for iM = 1:length(mobileName)
     
     % Read mesh file created from the video recorded by the mobile
-    ptCloud = pcread(['Validation_study/Meshes/' mobileName{iM} '.ply']);
+    ptCloud = pcread(fullfile('Validation_study','Meshes',[mobileName{iM} '.ply']);
 
     cc      = ptCloud.Color;
     loc     = double(ptCloud.Location);
@@ -159,7 +159,7 @@ for iM = 1:length(mobileName)
      view([20,150])
      
      % Saving 
-%      save_file = ['Validation_study/Results/' mobileName{iM} '_pos.mat'];
+%      save_file = fullfile('Validation_study','Results',[mobileName{iM} '_pos.mat']);
 %      save(save_file, 'pos_lm', 'pos_10_10', 'pos_10_20', 'pos_10_5')
 
      % REGISTRATION
@@ -206,7 +206,7 @@ for iM = 1:length(mobileName)
      ylabel('Error [mm]')
 
      % Saving
-%      save_file = ['Validation_study/Results/' mobileName{iM} '_error.mat'];
+%      save_file = fullfile('Validation_study','Results',[mobileName{iM} '_error.mat']);
 %      save(save_file,'error','Correspondence')
 end
 
@@ -214,7 +214,7 @@ end
 for iO = 1:length(filenamePol)
     
     % Read Polhemus file 
-    temp            = readtable(['Validation_study/Polhemus/',filenamePol{iO},'.csv']);
+    temp            = readtable(fullfile('Validation_study','Polhemus',[filenamePol{iO},'.csv']));
     pos             = table2array(temp(:,2:4));
     
     idx_landmarks   = [153;154;288;134;135]; % Nasion, Inion, R, L, Cz
