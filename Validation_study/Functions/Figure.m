@@ -1,11 +1,9 @@
-clear all
-clc
+% This script creates Figure 5 of the manuscript
 
-
-load('../Other/phantom_positions.mat')
+load('Validation_study/Other/phantom_positions.mat')
 
 all_points      = 1:288;
-files           = dir('../Results/*error.mat');
+files           = dir('Validation_study/Results/*error.mat');
 error_matrix    = nan(length(all_points),length(files));
 
 for i = 1:length(files)
