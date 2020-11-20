@@ -1,7 +1,6 @@
-%This function performs the mapping from a tetrahedral volume mesh to the
-%associated GM mesh.  Output is in the form of a sparse transformation matrix with
-%dimensions NxM where M is the number of tetrahedral mesh nodes and N is
-%the number of GM surface nodes;
+% This function performs the mapping of the fluence from a tetrahedral volume mesh to the
+% associated GM mesh and saves the output. The fluence that is loaded can
+% be computed using the Fluence_computation.m function
 
 clear all
 close all
